@@ -1,3 +1,3 @@
 # PokeMUn
 
-C based game.
+PokeMUn is a C based game using SDL2 libraries.
