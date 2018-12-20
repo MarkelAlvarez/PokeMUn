@@ -3,5 +3,4 @@
 #include <string.h>
 #include <Windows.h>
 #include <SDL.h>
-#include "SDLHasieratu.h"
 
