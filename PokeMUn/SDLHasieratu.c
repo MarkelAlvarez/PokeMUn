@@ -1,15 +1,11 @@
 #include "funtzioak.h"
-#include "SDLHasieratu.h"
 
-void punteroak()
-{
-	//The window we'll be rendering to
-	SDL_Window* window = NULL;
-	//The surface contained by the window
-	SDL_Surface* screenSurface = NULL;
-	//The image we will load and show on the screen
-	SDL_Surface* HelloWorld = NULL;
-}
+//The window we'll be rendering to
+SDL_Window* window = NULL;
+//The surface contained by the window
+SDL_Surface* screenSurface = NULL;
+//The image we will load and show on the screen
+SDL_Surface* HelloWorld = NULL;
 
 int SDLHasi()
 {
@@ -56,11 +52,34 @@ int mediaKargatu()
 void bukatu()
 {
 	//Deallocate surface
-    SDL_FreeSurface( gHelloWorld );
+    SDL_FreeSurface( HelloWorld );
     HelloWorld = NULL;
     //Destroy window
-    SDL_DestroyWindow( gWindow );
-    Window = NULL;
+    SDL_DestroyWindow( window );
+    window = NULL;
     //Quit SDL subsystems
     SDL_Quit();
+}
+
+void denaHasi()
+{
+	if (!SDLHasi())
+	{
+		printf("\n Errorea egon da hasieratzean.");
+		printf("\n %s", SDL_GetError());
+	}
+	else
+	{
+		if (!mediaKargatu())
+		{
+			printf("\n Errorea egon da media kargatzerakoan.");
+			printf("\n %s", SDL_GetError());
+		}
+		else
+		{
+			SDL_BlitSurface(HelloWorld, NULL, screenSurface, NULL);
+			SDL_UpdateWindowSurface(window);
+		}
+		//SDL_Delay(2000);
+	}
 }
