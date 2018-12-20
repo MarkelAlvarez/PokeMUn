@@ -1,8 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-#include <string.h>
-#include <Windows.h>
-#include <SDL.h>
+#include "funtzioak.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -37,7 +33,7 @@ int main(int argc, char* args[])
 			//Fill the surface white
 			SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
 			//Load BMP image
-			HelloWorld = SDL_LoadBMP(".\\IMG\\PokeMUn.bmp");
+			HelloWorld = SDL_LoadBMP("IMG/PokeMUn.bmp");
 			if (HelloWorld == NULL)
 			{
 				printf("Unable to load image %s! SDL Error: %s\n", ".\\IMG\\PokeMUn.bmp", SDL_GetError());
