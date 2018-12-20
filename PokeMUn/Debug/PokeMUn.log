@@ -1,3 +1,2 @@
 ﻿  main.c
-d:\onedrive - mondragon unibertsitatea\mondragon unibertsitatea\1. maila\2018-2019\1. seihilabetea\pbl\pokemun\pokemun\main.c(46): warning C4133: 'función': tipos incompatibles, de 'SDL_Surface *' a 'SDL_Window *'
   PokeMUn.vcxproj -> D:\OneDrive - Mondragon Unibertsitatea\Mondragon Unibertsitatea\1. maila\2018-2019\1. seihilabetea\PBL\PokeMUn\Debug\PokeMUn.exe
