@@ -3,7 +3,7 @@
 int main(int argc, char const *argv[])
 {
 	denaHasi();
-	//Proba d
+	//Proba da
 	getchar();
 	return 0;
 }
