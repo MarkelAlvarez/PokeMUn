@@ -1,10 +1,11 @@
 #ifndef SDLHASIERATU_H
 #define SDLHASIERATU_H
 
-#include <SDL.h>
+#define _CRT_SECURE_NO_WARNINGS
+#include <string.h>
 #include <stdio.h>
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#include <SDL.h>
+#include <Windows.h>
 
 int SDLHasi();
 int mediaKargatu();

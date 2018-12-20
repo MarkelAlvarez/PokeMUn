@@ -1,4 +1,4 @@
-#include "funtzioak.h"
+#include "SDLHasieratu.h"
 
 //The window we'll be rendering to
 SDL_Window* window = NULL;
@@ -9,6 +9,7 @@ SDL_Surface* HelloWorld = NULL;
 
 int SDLHasi()
 {
+	const int SCREEN_WIDTH = 640, SCREEN_HEIGHT = 480;
 	int hasieratua = 0;
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -25,6 +26,8 @@ int SDLHasi()
 		}
 		else
 		{
+			SDL_Surface* icon = SDL_LoadBMP("IMG/logo.bmp");
+			SDL_SetWindowIcon(window, icon);
 			//Get window surface
 			screenSurface = SDL_GetWindowSurface(window);
 			hasieratua = 1;

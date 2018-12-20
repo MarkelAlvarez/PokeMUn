@@ -15,18 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SDLHasieratu.c">
+    <ClCompile Include="main.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="main.c">
+    <ClCompile Include="SDLHasieratu.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDLHasieratu.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="funtzioak.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,9 +1,10 @@
-#include "funtzioak.h"
+#include "SDLHasieratu.h"
+#include <stdio.h>
 
-int main(int argc, char const *argv[])
+int main()
 {
 	denaHasi();
-	//Proba da
+
 	getchar();
 	return 0;
 }
