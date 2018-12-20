@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="hasiera.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="SDLHasieratu.c" />
   </ItemGroup>
