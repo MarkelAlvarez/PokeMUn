@@ -61,9 +61,11 @@ void ebentoaDetektatu(int ebentoa)
 	}
 }
 
-int randomColor()
+void randomColor()
 {
-	rngGenerator(1, 255);
+	int prueba;
+	
+	prueba = rngGenerator(1, 255);
 }
 
 int rngGenerator(int min, int max)

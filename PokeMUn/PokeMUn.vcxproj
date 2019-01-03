@@ -131,9 +131,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
+    <ClCompile Include="player.c" />
     <ClCompile Include="SDLHasieratu.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="funtzioak.h" />
+    <ClInclude Include="kontrolak.h" />
     <ClInclude Include="SDLHasieratu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,6 +1,11 @@
 #ifndef FUNTZIOAK_H
 #define FUNTZIOAK_H
-#include "SDLHasieratu.h"
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <string.h>
+#include <stdio.h>
+#include <SDL.h>
+#include <Windows.h>
 
 typedef struct
 {
@@ -22,6 +27,6 @@ POSIZIOA movePlayer(int signX, int signY);
 int ebentuaJasoGertatuBada();
 void karratuaMarraztu(int x, int y);
 int rngGenerator(int min, int max);
-int randomColor();
+void randomColor();
 
 #endif

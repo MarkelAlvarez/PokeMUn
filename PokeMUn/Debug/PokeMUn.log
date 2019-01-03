@@ -1,5 +1,6 @@
 ﻿  main.c
-d:\onedrive - mondragon unibertsitatea\mondragon unibertsitatea\1. maila\2018-2019\1. seihilabetea\pbl\pokemun\pokemun\main.c(5): warning C4026: función declarada con lista de parámetros formales
+d:\onedrive - mondragon unibertsitatea\mondragon unibertsitatea\1. maila\2018-2019\1. seihilabetea\pbl\pokemun\pokemun\main.c(6): warning C4026: función declarada con lista de parámetros formales
+  player.c
   SDLHasieratu.c
   Generando código...
   PokeMUn.vcxproj -> D:\OneDrive - Mondragon Unibertsitatea\Mondragon Unibertsitatea\1. maila\2018-2019\1. seihilabetea\PBL\PokeMUn\Debug\PokeMUn.exe
