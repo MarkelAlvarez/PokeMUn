@@ -1,12 +1,6 @@
 #ifndef KONTROLAK_H
 #define KONTROLAK_H
 
-#define _CRT_SECURE_NO_WARNINGS
-#include <string.h>
-#include <stdio.h>
-#include <SDL.h>
-#include <Windows.h>
-
 #define SAGU_MUGIMENDUA  4
 #define SAGU_BOTOIA_ESKUMA 5
 #define SAGU_BOTOIA_EZKERRA 6
@@ -57,3 +51,4 @@
 #define TECLA_LEFT 276
 
 #endif
+

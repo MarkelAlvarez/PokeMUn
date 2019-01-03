@@ -1,10 +1,10 @@
 #include "funtzioak.h"
 #include "kontrolak.h"
+#include "irudiak.h"
 #define R 30
 
 SDL_Event event;
 PLAYER player;
-SDL_Renderer* gRenderer;
 
 void karratuaMarraztu(int x, int y)
 {
@@ -33,7 +33,11 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_RenderClear(gRenderer);
 
 		player.pos = movePlayer(1, 1);
-		karratuaMarraztu(player.pos.x, player.pos.y);
+		//karratuaMarraztu(player.pos.x, player.pos.y);
+		irudiaMugitu(0, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
+
 	}
 	if (ebentoa == TECLA_a)
 	{
@@ -41,7 +45,10 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_RenderClear(gRenderer);
 
 		player.pos = movePlayer(-1, 1);
-		karratuaMarraztu(player.pos.x, player.pos.y);
+		//karratuaMarraztu(player.pos.x, player.pos.y);
+		irudiaMugitu(0, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
 	}
 	if (ebentoa == TECLA_s)
 	{
@@ -49,7 +56,10 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_RenderClear(gRenderer);
 
 		player.pos = movePlayer(-1, -1);
-		karratuaMarraztu(player.pos.x, player.pos.y);
+		//karratuaMarraztu(player.pos.x, player.pos.y);
+		irudiaMugitu(0, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
 	}
 	if (ebentoa == TECLA_d)
 	{
@@ -57,15 +67,16 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_RenderClear(gRenderer);
 
 		player.pos = movePlayer(1, -1);
-		karratuaMarraztu(player.pos.x, player.pos.y);
+		//karratuaMarraztu(player.pos.x, player.pos.y);
+		irudiaMugitu(0, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
 	}
 }
 
-void randomColor()
+int randomColor()
 {
-	int prueba;
-	
-	prueba = rngGenerator(1, 255);
+	rngGenerator(1, 255);
 }
 
 int rngGenerator(int min, int max)

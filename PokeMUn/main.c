@@ -1,6 +1,5 @@
-#include "funtzioak.h"
+#include "funtzioak.h" 
 #include "kontrolak.h"
-#include "SDLHasieratu.h"
 
 int main()
 {
@@ -11,8 +10,7 @@ int main()
 	{
 		egoera = ebentuaJasoGertatuBada();
 		ebentoaDetektatu(egoera);
-	} while (egoera != -1); //-1 itzuliko du ESC sakatzean
-	
+	} while (egoera != GAME_OVER); //GAME_OVER itzuliko du ESC sakatzean
 	bukatu();
 	return 0;
 }
