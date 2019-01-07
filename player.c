@@ -5,18 +5,16 @@
 
 SDL_Event event;
 PLAYER player;
-NPC npc; //array-aren dimentsioa = npc kantitatea
+POSIZIOA saguPos;
+SDL_Renderer* gRenderer;
+POSIZIOA saguarenPosizioa() { return saguPos; }
 
-
-
-int npcHitbox()
+void karratuaMarraztu(int x, int y)
 {
-	npc.posi.x = 320;
-	npc.posi.y = 240;
-	if (player.pos.x + PLAYER_W/2 == npc.posi.x - NPC_W/2 && player.pos.y + PLAYER_H / 2 == npc.posi.y - NPC_H / 2)
-	{
-		printf("Ikutu du x\n");
-	}
+	SDL_SetRenderDrawColor(gRenderer, 255, 0, 0, 255); // Yellow color
+	SDL_Rect rect = { x, y, 50, 50 }; // {x, y, width, height}
+	SDL_RenderFillRect(gRenderer, &rect);
+	SDL_RenderPresent(gRenderer);
 }
 
 POSIZIOA movePlayer(int signX, int signY)
@@ -38,6 +36,7 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_RenderClear(gRenderer);
 
 		player.pos = movePlayer(0, -1);
+		//karratuaMarraztu(player.pos.x, player.pos.y);
 		irudiaMugitu(0, player.pos.x, player.pos.y);
 		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
@@ -49,6 +48,7 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_RenderClear(gRenderer);
 
 		player.pos = movePlayer(-1, 0);
+		//karratuaMarraztu(player.pos.x, player.pos.y);
 		irudiaMugitu(0, player.pos.x, player.pos.y);
 		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
@@ -59,6 +59,7 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_RenderClear(gRenderer);
 
 		player.pos = movePlayer(0, 1);
+		//karratuaMarraztu(player.pos.x, player.pos.y);
 		irudiaMugitu(0, player.pos.x, player.pos.y);
 		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
@@ -69,11 +70,11 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_RenderClear(gRenderer);
 
 		player.pos = movePlayer(1, 0);
+		//karratuaMarraztu(player.pos.x, player.pos.y);
 		irudiaMugitu(0, player.pos.x, player.pos.y);
 		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
 	}
-	npcHitbox();
 }
 
 int randomColor()
@@ -123,6 +124,26 @@ int ebentuaJasoGertatuBada()
 		case SDL_QUIT:
 			ret = GERTAERA_IRTEN;
 			break;
+		case SDL_MOUSEBUTTONUP:
+			switch (event.button.button) {
+			case SDL_BUTTON_LEFT:
+				ret = SAGU_BOTOIA_EZKERRA;
+				break;
+			case SDL_BUTTON_RIGHT:
+				ret = SAGU_BOTOIA_ESKUMA;
+				break;
+			default:
+				ret = event.button.button;
+				break;
+			}
+			break;
+		case SDL_MOUSEMOTION:
+			//ALDAGIA OROKOR BATEN EZARRIK ODUGU X ETA Y GERO FUNZTIO BATEKIN IRAKURTZEKO AZKEN EBENTUAREN POSIZIOA
+			saguPos.x = event.motion.x;
+			saguPos.y = event.motion.y;
+			ret = SAGU_MUGIMENDUA;
+			break;
+
 		}
 	}
 	return ret;
