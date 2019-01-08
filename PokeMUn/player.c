@@ -5,6 +5,9 @@
 
 SDL_Event event;
 PLAYER player;
+POSIZIOA saguPos;
+SDL_Renderer* gRenderer;
+POSIZIOA saguarenPosizioa() { return saguPos; }
 
 void karratuaMarraztu(int x, int y)
 {
@@ -32,7 +35,7 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
 		SDL_RenderClear(gRenderer);
 
-		player.pos = movePlayer(1, 1);
+		player.pos = movePlayer(0, -1);
 		//karratuaMarraztu(player.pos.x, player.pos.y);
 		irudiaMugitu(0, player.pos.x, player.pos.y);
 		irudiakMarraztu();
@@ -44,7 +47,7 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
 		SDL_RenderClear(gRenderer);
 
-		player.pos = movePlayer(-1, 1);
+		player.pos = movePlayer(-1, 0);
 		//karratuaMarraztu(player.pos.x, player.pos.y);
 		irudiaMugitu(0, player.pos.x, player.pos.y);
 		irudiakMarraztu();
@@ -55,7 +58,7 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
 		SDL_RenderClear(gRenderer);
 
-		player.pos = movePlayer(-1, -1);
+		player.pos = movePlayer(0, 1);
 		//karratuaMarraztu(player.pos.x, player.pos.y);
 		irudiaMugitu(0, player.pos.x, player.pos.y);
 		irudiakMarraztu();
@@ -66,7 +69,7 @@ void ebentoaDetektatu(int ebentoa)
 		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
 		SDL_RenderClear(gRenderer);
 
-		player.pos = movePlayer(1, -1);
+		player.pos = movePlayer(1, 0);
 		//karratuaMarraztu(player.pos.x, player.pos.y);
 		irudiaMugitu(0, player.pos.x, player.pos.y);
 		irudiakMarraztu();
@@ -121,6 +124,26 @@ int ebentuaJasoGertatuBada()
 		case SDL_QUIT:
 			ret = GERTAERA_IRTEN;
 			break;
+		case SDL_MOUSEBUTTONUP:
+			switch (event.button.button) {
+			case SDL_BUTTON_LEFT:
+				ret = SAGU_BOTOIA_EZKERRA;
+				break;
+			case SDL_BUTTON_RIGHT:
+				ret = SAGU_BOTOIA_ESKUMA;
+				break;
+			default:
+				ret = event.button.button;
+				break;
+			}
+			break;
+		case SDL_MOUSEMOTION:
+			//ALDAGIA OROKOR BATEN EZARRIK ODUGU X ETA Y GERO FUNZTIO BATEKIN IRAKURTZEKO AZKEN EBENTUAREN POSIZIOA
+			saguPos.x = event.motion.x;
+			saguPos.y = event.motion.y;
+			ret = SAGU_MUGIMENDUA;
+			break;
+
 		}
 	}
 	return ret;

@@ -17,10 +17,16 @@ typedef struct
 
 }PLAYER;
 
+typedef struct
+{
+	int id;
+	POSIZIOA posi;
+}NPC;
+
+int npcHitbox();
 void ebentoaDetektatu(int ebentoa);
 POSIZIOA movePlayer(int signX, int signY);
 int ebentuaJasoGertatuBada();
-void karratuaMarraztu(int x, int y);
 int rngGenerator(int min, int max);
 int randomColor();
 

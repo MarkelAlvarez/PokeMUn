@@ -56,6 +56,7 @@ int mediaKargatu()
 	//Load BMP image
 	//HelloWorld = SDL_LoadBMP(".\\img\\sprite.bmp");
 	hasieratua = IRUDIAK_spriteSortu();
+	IRUDIAK_npcSortu();
 	if (hasieratua != NULL)
 	{
 		printf("Unable to load image %s! SDL Error: %s\n", ".\\img\\sprite.bmp", SDL_GetError());

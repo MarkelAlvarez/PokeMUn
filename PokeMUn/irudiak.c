@@ -73,6 +73,18 @@ int IRUDIAK_spriteSortu()
 	return portada;
 }
 
+int IRUDIAK_npcSortu()
+{
+	int portada = -1;
+	portada = irudiaKargatu(SPRITE_NPC);
+	irudiaMugitu(portada, 320, 240);
+	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(gRenderer);
+	irudiakMarraztu();
+
+	return portada;
+}
+
 void  irudiaMugitu(int numImg, int x, int y)
 {
 
