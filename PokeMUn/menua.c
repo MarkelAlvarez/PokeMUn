@@ -58,13 +58,11 @@ int hasierakomenu()
 	{
 		egoera = GAME_OVER;
 		irudiaKendu(ID_menua);
-		irudiaKendu(ID_menuKontrolak);
 	}
 	else if ((ebentu == SAGU_BOTOIA_EZKERRA) && (saguPos.x > 257) && (saguPos.x < 413) && (saguPos.y > 313) && (saguPos.y < 366))//kreditoak
 	{
 		egoera = GAME_OVER;
 		irudiaKendu(ID_menua);
-		irudiaKendu(ID_menuKreditoak);
 	}
 	else if ((ebentu == SAGU_BOTOIA_EZKERRA) && (saguPos.x > 309) && (saguPos.x < 365) && (saguPos.y > 385) && (saguPos.y < 435))//etxea
 	{
@@ -72,8 +70,30 @@ int hasierakomenu()
 		irudiaKendu(ID_menua);
 	}
 
-
 		return egoera;
 
 }
 
+int pertsonaiaAukeratu()
+{
+	int ID_pertsonaiMenua, ebentua, ID_pertsonaiaAukeratu, ikutu = 0;
+	POSIZIOA saguPos;
+
+	saguPos = saguarenPosizioa();
+	ID_pertsonaiMenua = IRUDIAK_pertsonaiMenua;
+	//y = 161 goian y = 319 behean
+	//x = 139 - 233
+	SDL_RenderPresent(gRenderer);
+	do
+	{
+		ebentua = ebentuaJasoGertatuBada();
+		saguPos = saguarenPosizioa();
+		if ((saguPos.x >= 139 && saguPos.x <= 233) && (saguPos.y >= 161 && saguPos.y <= 319))
+		{
+			ID_pertsonaiaAukeratu = irudiaKargatu(PERTSONAIA_AUKERATU);
+			irudiaMugitu(ID_pertsonaiaAukeratu, 180, 236);
+			SDL_RenderPresent(gRenderer);
+			irudiaKendu(ID_pertsonaiaAukeratu);
+		}
+	} while (ikutu == 0);
+}
