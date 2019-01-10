@@ -1,6 +1,6 @@
 #ifndef FUNTZIOAK_H
 #define FUNTZIOAK_H
-#include "SDLHasieratu.h"
+#include "sdlHasieratu.h"
 
 typedef struct
 {
@@ -12,22 +12,21 @@ typedef struct
 typedef struct
 {
 	int id;
-	//Bere posizioa aldatzeko/fitxategian gordetzeko
 	POSIZIOA pos;
-
+	int kredituak;
 }PLAYER;
 
-typedef struct
-{
-	int id;
-	POSIZIOA posi;
-}NPC;
+PLAYER player;
 
-int npcHitbox();
+int gim2Ireki(PLAYER player);
+void gim2Interakzioa();
+void etxearekikoInterakzioa();
+int etxeaIreki(PLAYER player);
+POSIZIOA saguarenPosizioa();
 void ebentoaDetektatu(int ebentoa);
 POSIZIOA movePlayer(int signX, int signY);
 int ebentuaJasoGertatuBada();
 int rngGenerator(int min, int max);
-int randomColor();
+int pausaMenua();
 
 #endif

@@ -61,13 +61,89 @@ int irudiarenPosizioaAurkitu(int id)
 	return -1;
 }
 
-int IRUDIAK_spriteSortu()
+int IRUDIAK_pauseIMG()
 {
 	int portada = -1;
-	portada = irudiaKargatu(SPRITE_PLAYER);
-	irudiaMugitu(portada, 320, 240);
-	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-	SDL_RenderClear(gRenderer);
+	portada = irudiaKargatu(PAUSE);
+	irudiaMugitu(portada, 0, 0);
+	pantailaGarbitu();
+	irudiakMarraztu();
+
+	return portada;
+}
+
+int IRUDIAK_munduaIMG()
+{
+	int portada = -1;
+	portada = irudiaKargatu(MUNDUA);
+	irudiaMugitu(portada, 0, 0);
+	pantailaGarbitu();
+	irudiakMarraztu();
+
+	return portada;
+}
+
+int IRUDIAK_spriteSortuAI()
+{
+	int portada = -1;
+	portada = irudiaKargatu(SPRITE_PLAYER_ARRIBIZQ);
+	irudiaMugitu(portada, player.pos.x, player.pos.y);
+	pantailaGarbitu();
+	irudiakMarraztu();
+
+	return portada;
+}
+
+int IRUDIAK_spriteSortuAbI()
+{
+	int portada = -1;
+	portada = irudiaKargatu(SPRITE_PLAYER_ABAJOIZQ);
+	irudiaMugitu(portada, player.pos.x, player.pos.y);
+	pantailaGarbitu();
+	irudiakMarraztu();
+
+	return portada;
+}
+
+int IRUDIAK_spriteSortuII()
+{
+	int portada = -1;
+	portada = irudiaKargatu(SPRITE_PLAYER_IZQIZQ);
+	irudiaMugitu(portada, player.pos.x, player.pos.y);
+	pantailaGarbitu();
+	irudiakMarraztu();
+
+	return portada;
+}
+
+int IRUDIAK_hasieraEtxeaSortu()
+{
+	int portada = -1;
+	portada = irudiaKargatu(HASIERA_ETXEA);
+	irudiaMugitu(portada, 0, 0);
+	pantailaGarbitu();
+	irudiakMarraztu();
+
+	return portada;
+}
+
+int IRUDIAK_gim2Sortu()
+{
+	int portada = -1;
+	portada = irudiaKargatu(GIM2);
+	irudiaMugitu(portada, 0, 0);
+	pantailaGarbitu();
+	irudiakMarraztu();
+
+	return portada;
+}
+
+int IRUDIAK_spriteSortuDI()
+{
+	int portada = -1;
+	portada = irudiaKargatu(SPRITE_PLAYER_DERIZQ);
+	irudiaMugitu(portada, player.pos.x, player.pos.y);
+	pantailaGarbitu();
 	irudiakMarraztu();
 
 	return portada;
@@ -78,8 +154,7 @@ int IRUDIAK_npcSortu()
 	int portada = -1;
 	portada = irudiaKargatu(SPRITE_NPC);
 	irudiaMugitu(portada, 320, 240);
-	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-	SDL_RenderClear(gRenderer);
+	pantailaGarbitu();
 	irudiakMarraztu();
 
 	return portada;
@@ -94,4 +169,24 @@ void  irudiaMugitu(int numImg, int x, int y)
 
 	irudiak[id].dest.x = x;
 	irudiak[id].dest.y = y;
+}
+
+void irudiaKendu(int id)
+{
+	int i = 0, pos = 0;
+
+	pos = irudiarenPosizioaAurkitu(id);
+	SDL_DestroyTexture(irudiak[pos].texture);
+	for (i = pos; i < irudiKop; i++)
+	{
+
+		irudiak[i] = irudiak[i + 1];
+	}
+	irudiKop--;
+}
+
+void pantailaGarbitu()
+{
+	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(gRenderer);
 }

@@ -18,6 +18,21 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="funtzioak.h" />
+    <ClInclude Include="irudiak.h" />
+    <ClInclude Include="kontrolak.h" />
+    <ClInclude Include="menua.h" />
+    <ClInclude Include="SDLHasieratu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="irudiak.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="menua.c" />
+    <ClCompile Include="player.c" />
+    <ClCompile Include="sdlHasieratu.c" />
+    <ClCompile Include="SDL_ttf.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{D69B5C3C-FD81-439E-B0FC-DB453C7CBBB3}</ProjectGuid>
@@ -129,16 +144,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.c" />
-    <ClCompile Include="player.c" />
-    <ClCompile Include="SDLHasieratu.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="funtzioak.h" />
-    <ClInclude Include="kontrolak.h" />
-    <ClInclude Include="SDLHasieratu.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

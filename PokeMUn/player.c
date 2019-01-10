@@ -1,85 +1,207 @@
 #include "funtzioak.h"
 #include "kontrolak.h"
 #include "irudiak.h"
-#define R 30
 
 SDL_Event event;
-PLAYER player;
 POSIZIOA saguPos;
-SDL_Renderer* gRenderer;
 POSIZIOA saguarenPosizioa() { return saguPos; }
+int ID_gim2;
 
-void karratuaMarraztu(int x, int y)
+void gim2Interakzioa()
 {
-	SDL_SetRenderDrawColor(gRenderer, 255, 0, 0, 255); // Yellow color
-	SDL_Rect rect = { x, y, 50, 50 }; // {x, y, width, height}
-	SDL_RenderFillRect(gRenderer, &rect);
+		if (gim2Ireki(player) == SARTU)
+		{
+			ID_gim2 = IRUDIAK_gim2Sortu();
+			irudiaKendu(player.id);
+			player.pos.x = 310;
+			player.pos.y = 369;
+			player.id = IRUDIAK_spriteSortuAI();
+			irudiaMugitu(player.id, player.pos.x, player.pos.y);
+			SDL_RenderPresent(gRenderer);
+		}
+		else if (gim2Ireki(player) == IRTEN)
+		{
+			irudiaKendu(ID_gim2);
+			IRUDIAK_munduaIMG();
+			irudiaKendu(player.id);
+			player.pos.x = 70;
+			player.pos.y = 386;
+			player.id = IRUDIAK_spriteSortuAbI();
+			irudiaMugitu(player.id, player.pos.x, player.pos.y);
+			SDL_RenderPresent(gRenderer);
+		}
+}
+
+int gim2Ireki(PLAYER player)
+{
+	int ret = 0;
+
+	if ((player.pos.y <= 388 && player.pos.y >= 370) && (player.pos.x >= 63 && player.pos.x <= 79))
+	{
+		ret = SARTU;
+	}
+	else
+	{
+		if ((player.pos.y >= 310 && player.pos.y <= 320) && (player.pos.x >= 350 && player.pos.x <= 374))
+		{
+			ret = IRTEN;
+		}
+	}
+
+	return ret;
+}
+
+void etxearekikoInterakzioa()
+{
+	if (etxeaIreki(player) == SARTU)
+	{
+		IRUDIAK_hasieraEtxeaSortu();
+		irudiaKendu(player.id);
+		player.pos.x = 280;
+		player.pos.y = 315;
+		player.id = IRUDIAK_spriteSortuAI();
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		SDL_RenderPresent(gRenderer);
+	}
+	else if (etxeaIreki(player) == IRTEN)
+	{
+		IRUDIAK_munduaIMG();
+		irudiaKendu(player.id);
+		player.pos.x = 564;
+		player.pos.y = 382;
+		player.id = IRUDIAK_spriteSortuAbI();
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		SDL_RenderPresent(gRenderer);
+	}
+}
+
+int etxeaIreki(PLAYER player)
+{
+	int ret = 0;
+
+	if ((player.pos.y <= 390 && player.pos.y >= 375) && (player.pos.x >= 552 && player.pos.x <=570))
+	{
+		ret = SARTU;
+	}
+	else
+	{
+		if ((player.pos.y >= 370 && player.pos.y <= 380) && (player.pos.x >= 260 && player.pos.x <= 285))
+		{
+			ret = IRTEN;
+		}
+	}
+
+	return ret;
+}
+
+int pausaMenua()
+{
+	int egoera, id, ret;
+
+	id = IRUDIAK_pauseIMG();
+	do
+	{
+		egoera = ebentuaJasoGertatuBada();
+		SDL_RenderPresent(gRenderer);
+	} while (egoera != TECLA_ESCAPE || egoera != TECLA_ENTER);
+	if (egoera == TECLA_ESCAPE)
+	{
+		ret = GAME_OVER;
+	}
+	else if(egoera == TECLA_ENTER)
+	{
+		ret = JOLASTEN;
+	}
+	pantailaGarbitu();
+	irudiaKendu(id);
+	irudiakMarraztu();
 	SDL_RenderPresent(gRenderer);
+
+	return ret;
 }
 
 POSIZIOA movePlayer(int signX, int signY)
 {
 	POSIZIOA aux;
-	aux.x = player.pos.x + (15 * signX);
-	aux.y = player.pos.y + (15 * signY);
+
+	aux = player.pos;
+	aux.x = player.pos.x + (7 * signX);
+	aux.y = player.pos.y + (7 * signY);
 
 	return aux;
 }
 
 void ebentoaDetektatu(int ebentoa)
 {
+	int signX, signY;
 
 	if (ebentoa == TECLA_w)
 	{
-		//Bi lerro hauek pantaila garbitzeko
-		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-		SDL_RenderClear(gRenderer);
-
+		signX = 0;
+		signY = -1;
+		pantailaGarbitu();
+		irudiaKendu(player.id);
+		player.id = IRUDIAK_spriteSortuAI();
 		player.pos = movePlayer(0, -1);
-		//karratuaMarraztu(player.pos.x, player.pos.y);
-		irudiaMugitu(0, player.pos.x, player.pos.y);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
-
 	}
 	if (ebentoa == TECLA_a)
 	{
-		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-		SDL_RenderClear(gRenderer);
-
+		signX = -1;
+		signY = 0;
+		pantailaGarbitu();
+		irudiaKendu(player.id);
+		player.id = IRUDIAK_spriteSortuII();
 		player.pos = movePlayer(-1, 0);
-		//karratuaMarraztu(player.pos.x, player.pos.y);
-		irudiaMugitu(0, player.pos.x, player.pos.y);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
 	}
 	if (ebentoa == TECLA_s)
 	{
-		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-		SDL_RenderClear(gRenderer);
-
+		signX = 0;
+		signY = 1;
+		pantailaGarbitu();
+		irudiaKendu(player.id);
+		player.id = IRUDIAK_spriteSortuAbI();
 		player.pos = movePlayer(0, 1);
-		//karratuaMarraztu(player.pos.x, player.pos.y);
-		irudiaMugitu(0, player.pos.x, player.pos.y);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
 	}
 	if (ebentoa == TECLA_d)
 	{
-		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-		SDL_RenderClear(gRenderer);
-
+		signX = 1;
+		signY = 0;
+		pantailaGarbitu();
+		irudiaKendu(player.id);
+		player.id = IRUDIAK_spriteSortuDI();
 		player.pos = movePlayer(1, 0);
-		//karratuaMarraztu(player.pos.x, player.pos.y);
-		irudiaMugitu(0, player.pos.x, player.pos.y);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
 	}
-}
-
-int randomColor()
-{
-	rngGenerator(1, 255);
+	if (ebentoa == TECLA_e)
+	{
+		etxearekikoInterakzioa();
+		gim2Interakzioa();
+	}
+	if (ebentoa == TECLA_SPACE)
+	{
+		textuaIdatzi(100, 200, "ESTO TIRA");
+		SDL_RenderPresent(gRenderer);
+	}
+	if (ebentoa == TECLA_ENTER)
+	{
+		textuaDesgaitu();
+		SDL_RenderPresent(gRenderer);
+	}
+	if(ebentoa==TECLA_ESCAPE)
+	{
+		pausaMenua();
+	}
 }
 
 int rngGenerator(int min, int max)
@@ -114,7 +236,7 @@ int ebentuaJasoGertatuBada()
 				ret = TECLA_s;
 				break;
 			case SDLK_ESCAPE:
-				ret = -1;
+				ret = TECLA_ESCAPE;
 				break;
 			default:
 				ret = event.key.keysym.sym;
