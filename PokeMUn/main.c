@@ -5,19 +5,21 @@
 
 int main()
 {
-	int egoera;
+	int egoera, ebentoa;
 
 	SDLHasi();
 	egoera = hasierakomenu();
+	//if gitano honen ordez funtzio bat aukerak kudeatzeko
 	if (egoera == JOLASTEN)
 	{
 		pantailaGarbitu();
+		//pertsonaia aukeratu
 		jokuaHasi();
 		SDL_RenderPresent(gRenderer);
 		do {
-			egoera = ebentuaJasoGertatuBada();
-			ebentoaDetektatu(egoera);
-		} while (egoera != TECLA_0);
+			ebentoa = ebentuaJasoGertatuBada();
+			egoera = ebentoaDetektatu(ebentoa);
+		} while (egoera != GAME_OVER);
 	}
 	bukatu();
 	return 0;

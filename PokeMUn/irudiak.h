@@ -3,10 +3,10 @@
 #define IRUDIAK_H
 
 #define MAX_IMG 500
-#define SPRITE_PLAYER_ARRIBIZQ ".\\img\\personajes\\ArribIzq.bmp"
-#define SPRITE_PLAYER_ABAJOIZQ ".\\img\\personajes\\AbajoIzq.bmp"
-#define SPRITE_PLAYER_IZQIZQ ".\\img\\personajes\\IzqIzq.bmp"
-#define SPRITE_PLAYER_DERIZQ ".\\img\\personajes\\DerIzq.bmp"
+#define SPRITE_PLAYER_ARRIBIZQ ".\\img\\personajes\\chica\\ArribIzq.bmp"
+#define SPRITE_PLAYER_ABAJOIZQ ".\\img\\personajes\\chica\\AbajoIzq.bmp"
+#define SPRITE_PLAYER_IZQIZQ ".\\img\\personajes\\chica\\IzqIzq.bmp"
+#define SPRITE_PLAYER_DERIZQ ".\\img\\personajes\\chica\\DerIzq.bmp"
 #define HASIERA_ETXEA ".\\img\\fondos\\casa_inicio.bmp"
 #define SPRITE_NPC ".\\img\\npc.bmp"
 #define PAUSE ".\\img\\menus\\pause.bmp"

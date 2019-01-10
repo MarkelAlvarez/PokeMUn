@@ -23,7 +23,7 @@ void gim2Interakzioa();
 void etxearekikoInterakzioa();
 int etxeaIreki(PLAYER player);
 POSIZIOA saguarenPosizioa();
-void ebentoaDetektatu(int ebentoa);
+int ebentoaDetektatu(int ebentoa);
 POSIZIOA movePlayer(int signX, int signY);
 int ebentuaJasoGertatuBada();
 int rngGenerator(int min, int max);

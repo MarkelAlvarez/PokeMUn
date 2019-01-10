@@ -103,7 +103,7 @@ int pausaMenua()
 	{
 		egoera = ebentuaJasoGertatuBada();
 		SDL_RenderPresent(gRenderer);
-	} while (egoera != TECLA_ESCAPE || egoera != TECLA_ENTER);
+	} while (egoera != TECLA_ESCAPE && egoera != TECLA_ENTER);
 	if (egoera == TECLA_ESCAPE)
 	{
 		ret = GAME_OVER;
@@ -131,9 +131,9 @@ POSIZIOA movePlayer(int signX, int signY)
 	return aux;
 }
 
-void ebentoaDetektatu(int ebentoa)
+int ebentoaDetektatu(int ebentoa)
 {
-	int signX, signY;
+	int signX, signY, egoera = JOLASTEN;
 
 	if (ebentoa == TECLA_w)
 	{
@@ -200,8 +200,10 @@ void ebentoaDetektatu(int ebentoa)
 	}
 	if(ebentoa==TECLA_ESCAPE)
 	{
-		pausaMenua();
+		egoera = pausaMenua();
 	}
+
+	return egoera;
 }
 
 int rngGenerator(int min, int max)
@@ -237,6 +239,9 @@ int ebentuaJasoGertatuBada()
 				break;
 			case SDLK_ESCAPE:
 				ret = TECLA_ESCAPE;
+				break;
+			case SDLK_RETURN:
+				ret = TECLA_ENTER;
 				break;
 			default:
 				ret = event.key.keysym.sym;
