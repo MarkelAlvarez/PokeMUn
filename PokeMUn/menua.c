@@ -83,7 +83,6 @@ int pertsonaiaAukeratu()
 	ID_pertsonaiMenua = IRUDIAK_pertsonaiMenua;
 	//y = 161 goian y = 319 behean
 	//x = 139 - 233
-	SDL_RenderPresent(gRenderer);
 	do
 	{
 		ebentua = ebentuaJasoGertatuBada();
@@ -95,5 +94,6 @@ int pertsonaiaAukeratu()
 			SDL_RenderPresent(gRenderer);
 			irudiaKendu(ID_pertsonaiaAukeratu);
 		}
+		SDL_RenderPresent(gRenderer);
 	} while (ikutu == 0);
 }
