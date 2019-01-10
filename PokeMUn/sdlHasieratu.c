@@ -105,8 +105,8 @@ int mediaKargatu()
 {
 	int hasieratua = 0;
 
-	IRUDIAK_munduaIMG();
-	player.id = IRUDIAK_spriteSortuAbI();
+	irudiaSortu(MUNDUA);
+	player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
 	
 }
 
@@ -141,19 +141,7 @@ void denaHasi()
 
 void jokuaHasi()
 {
-	if (mediaKargatu())
-	{
-		printf("Errorea egon da media kargatzerakoan.");
-		printf("\n %s", SDL_GetError());
-	}
-	else
-	{
-		lehioaAktualizatu();
-	}
-}
-
-void lehioaAktualizatu()
-{
+	mediaKargatu();
 	SDL_RenderPresent(gRenderer);
 	SDL_UpdateWindowSurface(window);
 }

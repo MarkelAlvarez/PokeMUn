@@ -61,103 +61,16 @@ int irudiarenPosizioaAurkitu(int id)
 	return -1;
 }
 
-int IRUDIAK_pauseIMG()
+int irudiaSortu(char* imgName)
 {
-	int portada = -1;
-	portada = irudiaKargatu(PAUSE);
-	irudiaMugitu(portada, 0, 0);
+	int img = -1;
+
+	img = irudiaKargatu(imgName);
+	irudiaMugitu(img, 0, 0);
 	pantailaGarbitu();
 	irudiakMarraztu();
 
-	return portada;
-}
-
-int IRUDIAK_munduaIMG()
-{
-	int portada = -1;
-	portada = irudiaKargatu(MUNDUA);
-	irudiaMugitu(portada, 0, 0);
-	pantailaGarbitu();
-	irudiakMarraztu();
-
-	return portada;
-}
-
-int IRUDIAK_spriteSortuAI()
-{
-	int portada = -1;
-	portada = irudiaKargatu(SPRITE_PLAYER_ARRIBIZQ);
-	irudiaMugitu(portada, player.pos.x, player.pos.y);
-	pantailaGarbitu();
-	irudiakMarraztu();
-
-	return portada;
-}
-
-int IRUDIAK_spriteSortuAbI()
-{
-	int portada = -1;
-	portada = irudiaKargatu(SPRITE_PLAYER_ABAJOIZQ);
-	irudiaMugitu(portada, player.pos.x, player.pos.y);
-	pantailaGarbitu();
-	irudiakMarraztu();
-
-	return portada;
-}
-
-int IRUDIAK_spriteSortuII()
-{
-	int portada = -1;
-	portada = irudiaKargatu(SPRITE_PLAYER_IZQIZQ);
-	irudiaMugitu(portada, player.pos.x, player.pos.y);
-	pantailaGarbitu();
-	irudiakMarraztu();
-
-	return portada;
-}
-
-int IRUDIAK_hasieraEtxeaSortu()
-{
-	int portada = -1;
-	portada = irudiaKargatu(HASIERA_ETXEA);
-	irudiaMugitu(portada, 0, 0);
-	pantailaGarbitu();
-	irudiakMarraztu();
-
-	return portada;
-}
-
-int IRUDIAK_gim2Sortu()
-{
-	int portada = -1;
-	portada = irudiaKargatu(GIM2);
-	irudiaMugitu(portada, 0, 0);
-	pantailaGarbitu();
-	irudiakMarraztu();
-
-	return portada;
-}
-
-int IRUDIAK_spriteSortuDI()
-{
-	int portada = -1;
-	portada = irudiaKargatu(SPRITE_PLAYER_DERIZQ);
-	irudiaMugitu(portada, player.pos.x, player.pos.y);
-	pantailaGarbitu();
-	irudiakMarraztu();
-
-	return portada;
-}
-
-int IRUDIAK_npcSortu()
-{
-	int portada = -1;
-	portada = irudiaKargatu(SPRITE_NPC);
-	irudiaMugitu(portada, 320, 240);
-	pantailaGarbitu();
-	irudiakMarraztu();
-
-	return portada;
+	return img;
 }
 
 void  irudiaMugitu(int numImg, int x, int y)

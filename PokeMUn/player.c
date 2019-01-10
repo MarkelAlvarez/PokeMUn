@@ -11,22 +11,22 @@ void gim2Interakzioa()
 {
 		if (gim2Ireki(player) == SARTU)
 		{
-			ID_gim2 = IRUDIAK_gim2Sortu();
+			ID_gim2 = irudiaSortu(GIM2);
 			irudiaKendu(player.id);
 			player.pos.x = 310;
 			player.pos.y = 369;
-			player.id = IRUDIAK_spriteSortuAI();
+			player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
 			irudiaMugitu(player.id, player.pos.x, player.pos.y);
 			SDL_RenderPresent(gRenderer);
 		}
 		else if (gim2Ireki(player) == IRTEN)
 		{
 			irudiaKendu(ID_gim2);
-			IRUDIAK_munduaIMG();
+			irudiaSortu(MUNDUA);
 			irudiaKendu(player.id);
 			player.pos.x = 70;
 			player.pos.y = 386;
-			player.id = IRUDIAK_spriteSortuAbI();
+			player.id = irudiaSortu(SPRITE_PLAYER_ABAJOIZQ);
 			irudiaMugitu(player.id, player.pos.x, player.pos.y);
 			SDL_RenderPresent(gRenderer);
 		}
@@ -42,7 +42,7 @@ int gim2Ireki(PLAYER player)
 	}
 	else
 	{
-		if ((player.pos.y >= 310 && player.pos.y <= 320) && (player.pos.x >= 350 && player.pos.x <= 374))
+		if ((player.pos.x >= 310 && player.pos.x <= 320) && (player.pos.y >= 350 && player.pos.y <= 374))
 		{
 			ret = IRTEN;
 		}
@@ -55,21 +55,21 @@ void etxearekikoInterakzioa()
 {
 	if (etxeaIreki(player) == SARTU)
 	{
-		IRUDIAK_hasieraEtxeaSortu();
+		irudiaSortu(HASIERA_ETXEA);
 		irudiaKendu(player.id);
-		player.pos.x = 280;
-		player.pos.y = 315;
-		player.id = IRUDIAK_spriteSortuAI();
+		player.pos.x = 268;
+		player.pos.y = 312;
+		player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
 		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		SDL_RenderPresent(gRenderer);
 	}
 	else if (etxeaIreki(player) == IRTEN)
 	{
-		IRUDIAK_munduaIMG();
+		irudiaSortu(MUNDUA);
 		irudiaKendu(player.id);
 		player.pos.x = 564;
 		player.pos.y = 382;
-		player.id = IRUDIAK_spriteSortuAbI();
+		player.id = irudiaSortu(SPRITE_PLAYER_ABAJOIZQ);
 		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		SDL_RenderPresent(gRenderer);
 	}
@@ -85,7 +85,7 @@ int etxeaIreki(PLAYER player)
 	}
 	else
 	{
-		if ((player.pos.y >= 370 && player.pos.y <= 380) && (player.pos.x >= 260 && player.pos.x <= 285))
+		if ((player.pos.y >= 300 && player.pos.y <= 310) && (player.pos.x >= 260 && player.pos.x <= 285))
 		{
 			ret = IRTEN;
 		}
@@ -98,7 +98,7 @@ int pausaMenua()
 {
 	int egoera, id, ret;
 
-	id = IRUDIAK_pauseIMG();
+	id = irudiaSortu(PAUSE);
 	do
 	{
 		egoera = ebentuaJasoGertatuBada();
@@ -141,7 +141,7 @@ int ebentoaDetektatu(int ebentoa)
 		signY = -1;
 		pantailaGarbitu();
 		irudiaKendu(player.id);
-		player.id = IRUDIAK_spriteSortuAI();
+		player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
 		player.pos = movePlayer(0, -1);
 		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		irudiakMarraztu();
@@ -153,7 +153,7 @@ int ebentoaDetektatu(int ebentoa)
 		signY = 0;
 		pantailaGarbitu();
 		irudiaKendu(player.id);
-		player.id = IRUDIAK_spriteSortuII();
+		player.id = irudiaSortu(SPRITE_PLAYER_IZQIZQ);
 		player.pos = movePlayer(-1, 0);
 		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		irudiakMarraztu();
@@ -165,7 +165,7 @@ int ebentoaDetektatu(int ebentoa)
 		signY = 1;
 		pantailaGarbitu();
 		irudiaKendu(player.id);
-		player.id = IRUDIAK_spriteSortuAbI();
+		player.id = irudiaSortu(SPRITE_PLAYER_ABAJOIZQ);
 		player.pos = movePlayer(0, 1);
 		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		irudiakMarraztu();
@@ -177,7 +177,7 @@ int ebentoaDetektatu(int ebentoa)
 		signY = 0;
 		pantailaGarbitu();
 		irudiaKendu(player.id);
-		player.id = IRUDIAK_spriteSortuDI();
+		player.id = irudiaSortu(SPRITE_PLAYER_DERIZQ);
 		player.pos = movePlayer(1, 0);
 		irudiaMugitu(player.id, player.pos.x, player.pos.y);
 		irudiakMarraztu();

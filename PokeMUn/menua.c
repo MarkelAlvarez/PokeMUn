@@ -14,7 +14,7 @@ int hasierakomenu()
 	int ID_menua, ID_menuJokatu, ID_menuKontrolak, ID_menuKreditoak;
 
 	pantailaGarbitu();
-	ID_menua = irudiaKargatu(MENU);
+	ID_menua = irudiaSortu(MENU);
 	irudiakMarraztu();
 	SDL_RenderPresent(gRenderer);
 
@@ -23,30 +23,27 @@ int hasierakomenu()
 		saguPos = saguarenPosizioa();
 		if ((saguPos.x > 257) && (saguPos.x < 413) && (saguPos.y > 159) && (saguPos.y < 213) && (tt != 1)) {
 			pantailaGarbitu();
-			ID_menuJokatu = irudiaKargatu(MENU_JOKATU);
+			ID_menuJokatu = irudiaSortu(MENU_JOKATU);
 			irudiakMarraztu();
 			SDL_RenderPresent(gRenderer);
 			tt = 1;
 		}
 		if ((saguPos.x > 257) && (saguPos.x < 413) && (saguPos.y > 236) && (saguPos.y < 289) && (tt != 2)) {
 			pantailaGarbitu();
-			ID_menuKontrolak = irudiaKargatu(MENU_KONTROLAK);
+			ID_menuKontrolak = irudiaSortu(MENU_KONTROLAK);
 			irudiakMarraztu();
 			SDL_RenderPresent(gRenderer);
 			tt = 2;
 		}
 		if ((saguPos.x > 257) && (saguPos.x < 413) && (saguPos.y > 313) && (saguPos.y < 366) && (tt != 3)) {
 			pantailaGarbitu();
-			ID_menuKreditoak = irudiaKargatu(MENU_KREDITOAK);
+			ID_menuKreditoak = irudiaSortu(MENU_KREDITOAK);
 			irudiakMarraztu();
 			SDL_RenderPresent(gRenderer);
 			tt = 3;
 		}
 
 	} while (ebentu != SAGU_BOTOIA_EZKERRA);
-
-
-
 
 	if ((ebentu == SAGU_BOTOIA_EZKERRA) && (saguPos.x > 257) && (saguPos.x < 413) && (saguPos.y > 159) && (saguPos.y < 213)) //jokatu
 	{
@@ -70,30 +67,82 @@ int hasierakomenu()
 		irudiaKendu(ID_menua);
 	}
 
-		return egoera;
+	return egoera;
 
 }
 
 int pertsonaiaAukeratu()
 {
-	int ID_pertsonaiMenua, ebentua, ID_pertsonaiaAukeratu, ikutu = 0;
+	int ikutu = 0;
+
+	do
+	{
+		ANIMAZIOAK_menuPertsonaiak();
+		ikutu = HITBOX_menuPertsonaiak();
+		
+	} while (ikutu == 0);
+}
+
+int HITBOX_menuPertsonaiak()
+{
+	int ebentua, ikutu = 0;
 	POSIZIOA saguPos;
 
 	saguPos = saguarenPosizioa();
-	ID_pertsonaiMenua = IRUDIAK_pertsonaiMenua;
-	//y = 161 goian y = 319 behean
-	//x = 139 - 233
-	do
+	ebentua = ebentuaJasoGertatuBada();
+	if (ebentua == SAGU_BOTOIA_EZKERRA)
 	{
-		ebentua = ebentuaJasoGertatuBada();
-		saguPos = saguarenPosizioa();
-		if ((saguPos.x >= 139 && saguPos.x <= 233) && (saguPos.y >= 161 && saguPos.y <= 319))
+		if ((saguPos.x >= 139 && saguPos.x <= 233) && (saguPos.y >= 161 && saguPos.y <= 319))//NESKA
 		{
-			ID_pertsonaiaAukeratu = irudiaKargatu(PERTSONAIA_AUKERATU);
-			irudiaMugitu(ID_pertsonaiaAukeratu, 180, 236);
-			SDL_RenderPresent(gRenderer);
-			irudiaKendu(ID_pertsonaiaAukeratu);
+			ikutu = 1;
 		}
+		else if ((saguPos.x >= 425 && saguPos.x <= 507) && (saguPos.y >= 161 && saguPos.y <= 319))//MUTILA
+		{
+			ikutu = 2;
+		}
+	}
+
+	return ikutu;
+}
+
+void ANIMAZIOAK_menuPertsonaiak()
+{
+	int ID_pertsonaiMenua, ebentua, ID_pertsonaiaAukeratu = 0, ikutu = 0, aux = 0;
+	POSIZIOA saguPos;
+
+	ID_pertsonaiMenua = irudiaSortu(PERTSONAI_MENUA);
+	ebentua = ebentuaJasoGertatuBada();
+	saguPos = saguarenPosizioa();
+	if ((saguPos.x >= 139 && saguPos.x <= 233) && (saguPos.y >= 161 && saguPos.y <= 319))
+	{
+		ID_pertsonaiaAukeratu = irudiaSortu(PERTSONAIA_AUKERATU);
+		irudiaMugitu(ID_pertsonaiaAukeratu, 120, 160);
+		irudiakMarraztu();
+		//aux aldagaia erabiliko dugu behin xagua hitboxatik kenduta pertsonaia inguratzen duen zati gorriak kentzeko
+		aux = 1;
+		irudiaKendu(ID_pertsonaiMenua);
 		SDL_RenderPresent(gRenderer);
-	} while (ikutu == 0);
+	}
+	else if (aux == 1)
+	{
+		irudiaKendu(ID_pertsonaiaAukeratu);
+		SDL_RenderPresent(gRenderer);
+		aux = 0;
+	}
+	else if ((saguPos.x >= 425 && saguPos.x <= 507) && (saguPos.y >= 161 && saguPos.y <= 319))
+	{
+		ID_pertsonaiaAukeratu = irudiaSortu(PERTSONAIA_AUKERATU);
+		irudiaMugitu(ID_pertsonaiaAukeratu, 403, 160);
+		irudiakMarraztu();
+		irudiaKendu(ID_pertsonaiaAukeratu);
+		aux = 2;
+		irudiaKendu(ID_pertsonaiMenua);
+	}
+	else if (aux == 2)
+	{
+		irudiaKendu(ID_pertsonaiaAukeratu);
+		//SDL_RenderPresent(gRenderer);
+		aux = 0;
+	}
+	SDL_RenderPresent(gRenderer);
 }
