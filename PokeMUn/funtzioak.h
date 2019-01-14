@@ -14,13 +14,27 @@ typedef struct
 	int id;
 	POSIZIOA pos;
 	int kredituak;
+
 }PLAYER;
 
-PLAYER player;
+typedef struct
+{
+	int id;
+	//boss (eztakigu ze aldagai mota)
+	int nota;
+	POSIZIOA hitbox;
 
+}GYM;
+
+int gim3Interakzioa();
+int gim3Ireki();
+int gim1Interakzioa();
+int gim1Ireki();
+int gim4Ireki();
+int gim4Interakzioa();
 int gim2Ireki(PLAYER player);
-void gim2Interakzioa();
-void etxearekikoInterakzioa();
+int gim2Interakzioa();
+int etxearekikoInterakzioa();
 int etxeaIreki(PLAYER player);
 POSIZIOA saguarenPosizioa();
 int ebentoaDetektatu(int ebentoa);

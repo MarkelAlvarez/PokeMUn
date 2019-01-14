@@ -6,9 +6,163 @@ SDL_Event event;
 POSIZIOA saguPos;
 POSIZIOA saguarenPosizioa() { return saguPos; }
 int ID_gim2;
+PLAYER player;
+GYM gimnasioak[5]; 
+//NOTA: FUNTZIO BAT GIMNASIOAK HASIERATZEKO
 
-void gim2Interakzioa()
+int gim3Interakzioa()
 {
+	int interakzioa = 0;
+
+	if (gim3Ireki(player) == SARTU)
+	{
+		irudiaSortu(GIM3);
+		irudiaKendu(player.id);
+		player.pos.x = 285;
+		player.pos.y = 325;
+		player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
+		interakzioa = 1;
+	}
+	else if (gim3Ireki(player) == IRTEN)
+	{
+		irudiaSortu(MUNDUA);
+		irudiaKendu(player.id);
+		player.pos.x = 198;
+		player.pos.y = 193;
+		player.id = irudiaSortu(SPRITE_PLAYER_ABAJOIZQ);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
+		interakzioa = 1;
+	}
+}
+
+int gim3Ireki()
+{
+	int ret = 0;
+
+	if ((player.pos.y <= 135 && player.pos.y >= 126) && (player.pos.x >= 497 && player.pos.x <= 505))
+	{
+		ret = SARTU;
+	}
+	else
+	{
+		if ((player.pos.y >= 1350 && player.pos.y <= 1260) && (player.pos.x >= 497 && player.pos.x <= 505))
+		{
+			ret = IRTEN;
+		}
+	}
+
+	return ret;
+}
+
+int gim1Interakzioa()
+{
+	int interakzioa = 0;
+
+	if (gim1Ireki(player) == SARTU)
+	{
+		irudiaSortu(GIM1);
+		irudiaKendu(player.id);
+		player.pos.x = 285;
+		player.pos.y = 325;
+		player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
+		interakzioa = 1;
+	}
+	else if (gim1Ireki(player) == IRTEN)
+	{
+		irudiaSortu(MUNDUA);
+		irudiaKendu(player.id);
+		player.pos.x = 198;
+		player.pos.y = 193;
+		player.id = irudiaSortu(SPRITE_PLAYER_ABAJOIZQ);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
+		interakzioa = 1;
+	}
+}
+
+int gim1Ireki()
+{
+	int ret = 0;
+
+	if ((player.pos.y <= 203 && player.pos.y >= 193) && (player.pos.x >= 188 && player.pos.x <= 217))
+	{
+		ret = SARTU;
+	}
+	else
+	{
+		if ((player.pos.y >= 385 && player.pos.y <= 395) && (player.pos.x >= 305 && player.pos.x <= 337))
+		{
+			ret = IRTEN;
+		}
+	}
+
+	return ret;
+}
+
+int gim4Interakzioa()
+{
+	int interakzioa = 0;
+
+	if (gim4Ireki(player) == SARTU)
+	{
+		irudiaSortu(GIM4);
+		irudiaKendu(player.id);
+		player.pos.x = 285;
+		player.pos.y = 325;
+		player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
+		interakzioa = 1;
+	}
+	else if (gim4Ireki(player) == IRTEN)
+	{
+		irudiaSortu(MUNDUA);
+		irudiaKendu(player.id);
+		player.pos.x = 80;
+		player.pos.y = 123;
+		player.id = irudiaSortu(SPRITE_PLAYER_ABAJOIZQ);
+		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
+		interakzioa = 1;
+	}
+
+	return interakzioa;
+}
+
+int gim4Ireki()
+{
+	int ret = 0;
+
+	if ((player.pos.y <= 127 && player.pos.y >= 119) && (player.pos.x >= 76 && player.pos.x <= 91))
+	{
+		ret = SARTU;
+	}
+	else
+	{
+		if ((player.pos.y >= 316 && player.pos.y <= 339) && (player.pos.x >= 300 && player.pos.x <= 320))
+		{
+			ret = IRTEN;
+		}
+	}
+
+	return ret;
+}
+
+int gim2Interakzioa()
+{
+	int interakzioa = 0;
+
 		if (gim2Ireki(player) == SARTU)
 		{
 			ID_gim2 = irudiaSortu(GIM2);
@@ -17,19 +171,25 @@ void gim2Interakzioa()
 			player.pos.y = 369;
 			player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
 			irudiaMugitu(player.id, player.pos.x, player.pos.y);
+			irudiakMarraztu();
 			SDL_RenderPresent(gRenderer);
+			interakzioa = 1;
 		}
 		else if (gim2Ireki(player) == IRTEN)
 		{
 			irudiaKendu(ID_gim2);
 			irudiaSortu(MUNDUA);
 			irudiaKendu(player.id);
-			player.pos.x = 70;
-			player.pos.y = 386;
+			player.pos.x = 63;
+			player.pos.y = 379;
 			player.id = irudiaSortu(SPRITE_PLAYER_ABAJOIZQ);
 			irudiaMugitu(player.id, player.pos.x, player.pos.y);
+			irudiakMarraztu();
 			SDL_RenderPresent(gRenderer);
+			interakzioa = 1;
 		}
+
+		return interakzioa;
 }
 
 int gim2Ireki(PLAYER player)
@@ -42,7 +202,7 @@ int gim2Ireki(PLAYER player)
 	}
 	else
 	{
-		if ((player.pos.x >= 310 && player.pos.x <= 320) && (player.pos.y >= 350 && player.pos.y <= 374))
+		if ((player.pos.x >= 310 && player.pos.x <= 320) && (player.pos.y >= 360 && player.pos.y <= 374))
 		{
 			ret = IRTEN;
 		}
@@ -51,8 +211,10 @@ int gim2Ireki(PLAYER player)
 	return ret;
 }
 
-void etxearekikoInterakzioa()
+int etxearekikoInterakzioa()
 {
+	int interakzioa = 0;
+
 	if (etxeaIreki(player) == SARTU)
 	{
 		irudiaSortu(HASIERA_ETXEA);
@@ -61,7 +223,9 @@ void etxearekikoInterakzioa()
 		player.pos.y = 312;
 		player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
 		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
+		interakzioa = 1;
 	}
 	else if (etxeaIreki(player) == IRTEN)
 	{
@@ -71,8 +235,12 @@ void etxearekikoInterakzioa()
 		player.pos.y = 382;
 		player.id = irudiaSortu(SPRITE_PLAYER_ABAJOIZQ);
 		irudiaMugitu(player.id, player.pos.x, player.pos.y);
+		irudiakMarraztu();
 		SDL_RenderPresent(gRenderer);
+		interakzioa = 1;
 	}
+
+	return interakzioa;
 }
 
 int etxeaIreki(PLAYER player)
@@ -185,8 +353,11 @@ int ebentoaDetektatu(int ebentoa)
 	}
 	if (ebentoa == TECLA_e)
 	{
-		etxearekikoInterakzioa();
-		gim2Interakzioa();
+		if (etxearekikoInterakzioa() == 1);
+		else if (gim1Interakzioa() == 1);
+		else if (gim2Interakzioa() == 1);
+		else if (gim3Interakzioa() == 1);
+		else if (gim4Interakzioa() == 1);
 	}
 	if (ebentoa == TECLA_SPACE)
 	{
