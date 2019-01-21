@@ -3,24 +3,32 @@
 #include "menua.h"
 #include "irudiak.h"
 
+#include "funtzioak.h" 
+#include "kontrolak.h"
+#include "menua.h"
+#include "irudiak.h"
+
 int main()
 {
-	int egoera, ebentoa;
+	int egoera = 0, errorea;
+	PLAYER menu;
 
-	SDLHasi();
-	egoera = hasierakomenu();
-	//if gitano honen ordez funtzio bat aukerak kudeatzeko
-	if (egoera == JOLASTEN)
+	errorea = SDLHasi();
+	if (errorea == 0)
 	{
-		pantailaGarbitu();
-		//pertsonaia aukeratu
-		jokuaHasi();
-		SDL_RenderPresent(gRenderer);
-		do {
-			ebentoa = ebentuaJasoGertatuBada();
-			egoera = ebentoaDetektatu(ebentoa);
-		} while (egoera != GAME_OVER);
+		printf(" Erroreak gertatu dira.");
 	}
-	bukatu();
+	else
+	{
+		menu.id = irudiaSortu(MENU);
+		irudiakMarraztu();
+		SDL_RenderPresent(gRenderer);
+		do
+		{
+			egoera = hasierakomenu(menu);
+		} while (egoera != GAME_OVER);
+		bukatu();
+	}
+
 	return 0;
 }

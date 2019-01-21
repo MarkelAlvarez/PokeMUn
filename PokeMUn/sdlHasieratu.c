@@ -1,13 +1,15 @@
 #include "funtzioak.h"
 #include "irudiak.h"
-//The window we'll be rendering to
+/* VIDEOA */
 SDL_Window* window = NULL;
-//The surface contained by the window
 SDL_Surface* screenSurface = NULL;
-//The image we will load and show on the screen
 SDL_Surface* HelloWorld = NULL;
+/* AUDIOA */
+Mix_Music *gMusic = NULL;
+
 SDL_Rect sprite;
 TTF_Font *font = 0;
+PLAYER player;
 
 int SDLHasi()
 {
@@ -21,22 +23,34 @@ int SDLHasi()
 	{
 		textuaGaitu();
 	}
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
 	{
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 	}
+	//Initialize SDL_mixer
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	{
+		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+	}
 	else
 	{
-		//Create window
+		gMusic = Mix_LoadMUS(".\\Sounds\\fondo.wav");
+		if (gMusic == NULL)
+		{
+			printf("Ezin izan da musika kargatu. SDL_mixer Error: %s\n", Mix_GetError());
+		}
+		Mix_PlayMusic(gMusic, -1);
+
 		window = SDL_CreateWindow("PokeMUn", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		gRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		//HelloWorld = IMG_Load(ICON);
+		SDL_SetWindowIcon(window, HelloWorld);
 		if (window == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		}
 		else
 		{
-			//Get window surface
 			screenSurface = SDL_GetWindowSurface(window);
 			hasieratua = 1;
 		}
@@ -45,9 +59,9 @@ int SDLHasi()
 	return hasieratua;
 }
 
-void textuaGaitu(void) 
+void textuaGaitu()
 {
-	font = TTF_OpenFontIndex("C:\\Windows\\Fonts\\ARIAL.TTF", 20, 0);
+	font = TTF_OpenFontIndex("C:\\Windows\\Fonts\\Arial.TTF", 20, 0);
 	if (!font)
 	{
 		printf("TTF_OpenFontIndex: %s\n", TTF_GetError());
@@ -58,7 +72,7 @@ void textuaIdatzi(int x, int y, char *str)
 {
 	SDL_Surface* textSurface;
 	SDL_Texture *mTexture;
-	SDL_Color textColor = { 0, 0, 255 };
+	SDL_Color textColor = { 0, 0, 0 };
 	SDL_Rect src, dst;
 
 	if (font == 0)
@@ -76,7 +90,7 @@ void textuaIdatzi(int x, int y, char *str)
 	SDL_DestroyTexture(mTexture);
 }
 
-void textuaDesgaitu(void)
+void textuaDesgaitu()
 {
 	if (font != 0)
 	{
@@ -101,17 +115,11 @@ int irudiaMarraztu(SDL_Texture* texture, SDL_Rect *pDest)
 	return 0;
 }
 
-int mediaKargatu()
-{
-	int hasieratua = 0;
-
-	irudiaSortu(MUNDUA);
-	player.id = irudiaSortu(SPRITE_PLAYER_ARRIBIZQ);
-	
-}
-
 void bukatu()
 {
+	//Free the music
+	Mix_FreeMusic(gMusic);
+	gMusic = NULL;
 	//Deallocate surface
 	SDL_FreeSurface(HelloWorld);
 	HelloWorld = NULL;
@@ -119,29 +127,32 @@ void bukatu()
 	SDL_DestroyWindow(window);
 	window = NULL;
 	//Quit SDL subsystems
+	Mix_Quit();
 	TTF_Quit();
 	SDL_Quit();
 }
 
-void denaHasi()
+void jokuaHasi(int generoa)
 {
+	PLAYER menu;
 
-	player.pos.x = 320;
-	player.pos.y = 240;
-	if (!SDLHasi())
+	menu.id = irudiaSortu(HASIERA_ETXEA);
+	if (player.generoa == 1)
 	{
-		printf("\n Errorea egon da hasieratzean.");
-		printf("\n %s", SDL_GetError());
+		player.id = irudiaSortu(SPRITE_PLAYER_ABAJOIZQ);
+		irudiaMugitu(player.id, 400, 200);
+		player.pos.x = 400;
+		player.pos.y = 200;
+		irudiakMarraztu(SPRITE_PLAYER_ABAJOIZQ);
 	}
-	else
+	else if (player.generoa == 2)
 	{
-		jokuaHasi();
+		player.id = irudiaSortu(PLAYER_ABAJOIZQ);
+		irudiaMugitu(player.id, 400, 200);
+		player.pos.x = 400;
+		player.pos.y = 200;
+		irudiakMarraztu(PLAYER_ABAJOIZQ);
 	}
-}
-
-void jokuaHasi()
-{
-	mediaKargatu();
 	SDL_RenderPresent(gRenderer);
 	SDL_UpdateWindowSurface(window);
 }

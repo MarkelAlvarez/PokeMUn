@@ -11,7 +11,7 @@ int irudiaKargatu(char* fileName)
 
 	if (irudiKop < MAX_IMG)
 	{
-		surface = SDL_LoadBMP(fileName);
+		surface = IMG_Load(fileName);
 		if (surface == NULL)
 		{
 			fprintf(stderr, "Couldn't load %s: %s\n", fileName, SDL_GetError());
@@ -52,7 +52,7 @@ void irudiakMarraztu(void)
 
 int irudiarenPosizioaAurkitu(int id)
 {
-	int i = 0, ret;
+	int i = 0;
 
 	for (i = 0; i < irudiKop; i++)
 	{

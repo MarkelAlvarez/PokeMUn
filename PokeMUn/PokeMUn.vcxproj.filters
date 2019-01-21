@@ -30,6 +30,9 @@
     <ClInclude Include="SDLHasieratu.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="hitbox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="irudiak.c">
@@ -48,6 +51,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="sdlHasieratu.c">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="hitbox.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
